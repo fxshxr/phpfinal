@@ -1,6 +1,3 @@
-<?php 
-session_start()
- ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,27 +9,52 @@ session_start()
 	<h1>Ответьте на вопросы ниже</h1>
 	<a href="login.php">вход для администратора</a>
 	<br>
-	<form action="post">
-		<label for="">Введите число <input type="text" name="num1"></label>
+	<form method="post">
+		<label for="">Введите число <input type="number" name="num1" required></label>
 		<br>
-		<label for=""> Введите положительное число больше 0<input type="text" name="num2"></label>
+		<label for=""> Введите положительное число больше 0
+			<input type="number" min='0' name="num2" required></label>
 		<br>
-		<label for=""> Введите ответ (не более 30 символов)<input type="text" name="txt1"></label>
+		<label for=""> Введите ответ (не более 30 символов)<input type="textarea" required size="30" name="txt1"></label>
 		<br>
-		<label for=""> Введите ответ (не более 255 символов)<input type="text" name="txt2"></label>
+		<label for=""> Введите ответ (не более 255 символов)<input type="textarea" 
+			required  rows="10" cols="45" name="txt2" size="255"></label>
 		<br>
-		<label for="">Выберете вариант ответа<input type="text" name="variant1"></label>
+		<label for="">Выберете вариант ответа
+			<select required name="var1">
+			<option value="1">1
+			</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+		</select></label>
 		<br>
-		<label for="">Выберете несколько вариантов ответа<input type="text" name="variant2"></label>
+		<label for="">Выберете несколько вариантов ответа<select multiple required name="var2">
+			<option value="1">
+				1
+			</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+		 </select></label>
 		<br>
 		<input type="submit">
 	</form>
 	<?php 
-	$base = mysql_connect("std-mysql.ist.mospolytech.ru:3306","std_923","12345678","std_923");
-	$query ="SELECT * FROM `phpfinal'";
-	echo $query;
+
+	if ($_POST) {
+		echo '<script>location.replace("clear.php");</script>'; exit;
+		}
+		$num1 = $_POST['num1'];
+		$num2 = $_POST['num2'];
+		$txt1 = $_POST['txt1'];
+		$txt2 = $_POST['txt2'];
+		$var1 = $_POST['var1'];
+		$var2 = $_POST['var2'];
+				
 
 	 ?>
+	
 
 </body>
 </html>
